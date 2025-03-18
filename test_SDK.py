@@ -288,7 +288,7 @@ def main(fabName, auth):
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
-        print("Usage: python script_name.py <fabric_name>")
+        print(f"Usage: python {sys.argv[0]} <fabric_name>")
         sys.exit(1)
 
     fabName = sys.argv[1]

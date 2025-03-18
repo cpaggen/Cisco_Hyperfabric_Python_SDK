@@ -19,14 +19,14 @@ This Python SDK provides a convenient and reasonably simple way to interact with
 1.  **Authentication:**
 
     *   Obtain a Bearer Token from the Hyperfabric web UI
-    *   Export the token as an environment variable called AUTH_TOKEN
+    *   Export the token as an environment variable called AUTH_TOKEN (```export AUTH_TOKEN=<token>```)
     *   Import auth_config in your client code; this builds the HTTP authentication header
 
 3.  **Usage:**
 
     *   Import the generated Python SDK or specific functions from the SDK into your project
     *   Refer to the docstrings within each function for detailed usage instructions, including parameter types and example payloads
-    *   Inspect the test_SDK.py example provided for your convenience
+    *   Inspect the test_SDK.py example provided for your convenience (launch with ```python test_SDK.py SDK-Test```)
 
 ## Example Usage
 
