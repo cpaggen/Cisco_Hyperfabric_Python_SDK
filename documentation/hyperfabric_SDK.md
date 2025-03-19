@@ -1,4 +1,3 @@
-```markdown
 # HyperFabric SDK Documentation
 
 This document provides a guide to using the HyperFabric SDK.  The SDK allows you to interact with the HyperFabric API to manage fabrics, nodes, connections, and more.
