@@ -6,7 +6,9 @@ This document provides a guide to using the HyperFabric SDK.  The SDK allows you
 ## Authentication
 
 All API requests require authentication using a bearer token. Simply export that token as environment variable AUTH_TOKEN.
-Import `auth_config` in your client code.
+Import `auth_config` in your client code and retrieve the `auth` parameter each API calls expects using `auth = auth_config.get_api_headers()`.
+Call any function you see below with `auth` you just retrieved.
+
 ## API Functions
 
 ### Bearer Tokens
