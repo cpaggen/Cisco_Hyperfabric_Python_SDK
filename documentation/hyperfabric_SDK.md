@@ -3,87 +3,10 @@
 
 This document provides a guide to using the HyperFabric SDK.  The SDK allows you to interact with the HyperFabric API to manage fabrics, nodes, connections, and more.
 
-## Base URL
-
-The base URL for the HyperFabric API is:
-
-`https://hyperfabric.cisco.com/api/v1`
-
 ## Authentication
 
-All API requests require authentication using a bearer token.  You must include an `Authorization` header with the value `Bearer <your_token>` in your requests.  The `auth` parameter in each function should be a dictionary: `{"Authorization": "Bearer <your_token>"}`.
-
-## Error Handling
-
-All API calls return `None` on error.  The functions will print error messages to the console to aid in debugging.  Successful calls return either JSON data, a status code, or raw text, depending on the endpoint and response.  It is important to check for `None` before attempting to use the returned data.
-
-## Utility Functions
-
-These are internal utility functions used by the SDK. You typically won't call these directly.
-
-### `_make_get_request(auth, url, params=None)`
-
-Makes a GET request to the specified URL.
-
-**Args:**
-
-*   `auth` (dict): A dictionary containing the `Authorization` header with the bearer token.
-*   `url` (str): The URL to make the request to.
-*   `params` (dict, optional): Query parameters to include in the request. Defaults to `None`.
-
-**Returns:**
-
-*   `dict`: JSON response if successful and decodable.
-*   `str`: Raw text if JSON decoding fails.
-*   `None`: On error.
-
-### `_make_delete_request(auth, url)`
-
-Makes a DELETE request to the specified URL.
-
-**Args:**
-
-*   `auth` (dict): A dictionary containing the `Authorization` header with the bearer token.
-*   `url` (str): The URL to make the request to.
-
-**Returns:**
-
-*   `dict`: JSON response if successful and decodable.
-*   `int`: HTTP status code if successful but no JSON.
-*   `None`: On error.
-
-### `_make_put_request(auth, url, payload=None)`
-
-Makes a PUT request to the specified URL.
-
-**Args:**
-
-*   `auth` (dict): A dictionary containing the `Authorization` header with the bearer token.
-*   `url` (str): The URL to make the request to.
-*   `payload` (dict, optional): The JSON payload to include in the request body. Defaults to `None`.
-
-**Returns:**
-
-*   `dict`: JSON response if successful and decodable.
-*   `str`: Raw text if JSON decoding fails.
-*   `None`: On error.
-
-### `_make_post_request(auth, url, payload=None)`
-
-Makes a POST request to the specified URL.
-
-**Args:**
-
-*   `auth` (dict): A dictionary containing the `Authorization` header with the bearer token.
-*   `url` (str): The URL to make the request to.
-*   `payload` (dict, optional): The JSON payload to include in the request body. Defaults to `None`.
-
-**Returns:**
-
-*   `dict`: JSON response if successful and decodable.
-*   `str`: Raw text if JSON decoding fails.
-*   `None`: On error.
-
+All API requests require authentication using a bearer token. Simply export that token as environment variable AUTH_TOKEN.
+Import `auth_config` in your client code.
 ## API Functions
 
 ### Bearer Tokens
