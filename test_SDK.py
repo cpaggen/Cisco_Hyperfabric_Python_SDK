@@ -1,7 +1,8 @@
 from hyperfabric_SDK import get_devices, get_fabrics, get_fabric, get_fabric_node, \
     update_fabric, add_fabric_connections, delete_fabric, commit_fabric_candidate, \
     add_fabric_nodes, set_ports, add_management_ports, add_fabric_vrfs, \
-    add_fabric_vnis, create_fabric, add_fabric_static_routes
+    add_fabric_vnis, create_fabric, add_fabric_static_routes, \
+    get_fabric_static_routes, update_fabric_static_route
 import sys
 from pprint import pprint
 import auth_config
@@ -277,6 +278,53 @@ def main(fabName, auth):
         print(f"Added static routes {routes}")
     else:
         print("Failed to add static routes")
+
+    print("------------------------------------ Get Static Routes ---------------------------------------")
+    vrf_routes = get_fabric_static_routes(auth, fabName, "Vrf-main")
+    if vrf_routes:
+        print(f"Routes for Vrf-Main are {vrf_routes}")
+        route_one = vrf_routes['staticRoutes'][0]['id']
+    else:
+        print("Failed to retrieve routes")
+        route_one = ''
+ 
+    print("------------------------------------ Commit Static Routes ------------------------------------")
+    commit = commit_fabric_candidate(auth, fabric_name=fabName, name="default", comments="API SDK commit - static routes")
+    print(f"Commit response: {commit}")
+
+
+    print("------------------------------------ Update Static Route -------------------------------------")
+    updated_routes = {
+        "name": "Vrf-main",
+        "enabled": True,
+        "routes": [
+             {
+                "prefix": "10.70.10.0/24",
+                "nextHop": "10.1.1.254",
+                "preference": 10,
+                "discard": False,
+            },
+            {
+                "prefix": "10.80.10.0/24",
+                "preference": 11,
+                "nextHop": "10.1.1.254",
+                "discard": False,
+            },
+            {
+                "prefix": "10.90.10.0/24",
+                "preference": 12,
+                "nextHop": "10.1.1.254",
+                "discard": False,
+            }
+            ]
+        }
+
+    new_route = update_fabric_static_route(auth, fabName, "Vrf-main", route_one, updated_routes)
+    if new_route:
+        print(f"Route update {new_route}")
+    else:
+        print("Failed to update route")
+
 
     print("------------------------------------ Fabric Deletion Test ------------------------------------")
 
